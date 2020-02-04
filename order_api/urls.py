@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from restaurants.views import RestaurantViewSet, FoodViewSet, RestaurantFoodsAPIView
+from restaurants.views import RestaurantViewSet, FoodViewSet, RestaurantFoodsAPIView, OrderFoodAPIView
 from users.views import UserViewSet, UserCreateViewSet
 from rest_framework.authtoken import views
 
@@ -31,6 +31,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api-token-auth/', views.obtain_auth_token),
-    path('api/restaurants/<id>/foods/', RestaurantFoodsAPIView.as_view()),
+    path('api/restaurants/<id>/foods', RestaurantFoodsAPIView.as_view()),
+    path('api/restaurants/<id>/order', OrderFoodAPIView.as_view()),
 ]
 
