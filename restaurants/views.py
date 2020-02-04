@@ -8,6 +8,7 @@ import json
 
 from restaurants.models import Restaurant, Food, Order
 from restaurants.serializers import RestaurantSerializer, FoodSerializer
+from users.models import User
 
 
 class RestaurantViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, mixins.CreateModelMixin,
@@ -30,7 +31,8 @@ class RestaurantFoodsAPIView(APIView):
     def get(self, request, id):
         try:
             restaurant = Restaurant.objects.prefetch_related('foods').get(pk=id)
-            return HttpResponse(restaurant.foods.all(), content_type='application/json')
+            foods = restaurant.foods.all()
+            return HttpResponse(foods, content_type='application/json')
         except (Restaurant.DoesNotExist,):
             return Response({'error': 'There is no restaurant with provided id'},
                             status=status.HTTP_404_NOT_FOUND)
@@ -58,4 +60,16 @@ class OrderFoodAPIView(APIView):
                             status=status.HTTP_404_NOT_FOUND)
         except (Food.DoesNotExist,):
             return Response({'error': 'There is no food with provided id in given restaurant'},
+                            status=status.HTTP_404_NOT_FOUND)
+
+
+class OrdersAPIView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def get(self, request):
+        try:
+            orders = Order.objects.filter(user_id=request.user.id)
+            return HttpResponse(orders, content_type='application/json')
+        except (User.DoesNotExist,):
+            return Response({'error': 'There is no user with provided id'},
                             status=status.HTTP_404_NOT_FOUND)
