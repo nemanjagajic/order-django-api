@@ -32,7 +32,15 @@ class RestaurantFoodsAPIView(APIView):
         try:
             restaurant = Restaurant.objects.prefetch_related('foods').get(pk=id)
             foods = restaurant.foods.all()
-            return HttpResponse(foods, content_type='application/json')
+            foods_response = []
+            for food in foods:
+                foods_response.append({
+                    'id': food.id,
+                    'name': food.name,
+                    'price': food.price,
+                    'restaurant_id': food.restaurant_id
+                })
+            return HttpResponse(json.dumps(foods_response), content_type='application/json')
         except (Restaurant.DoesNotExist,):
             return Response({'error': 'There is no restaurant with provided id'},
                             status=status.HTTP_404_NOT_FOUND)
@@ -70,7 +78,20 @@ class OrdersAPIView(APIView):
     def get(self, request):
         try:
             orders = Order.objects.filter(user_id=request.user.id)
-            return HttpResponse(orders, content_type='application/json')
+            orders_response = []
+            for order in orders:
+                restaurant = Restaurant.objects.get(pk=order.restaurant_id)
+                orders_response.append({
+                    'id': order.id,
+                    'status': order.status,
+                    'created_at': str(order.created_at),
+                    'restaurant': {
+                        'id': restaurant.location,
+                        'name': restaurant.name,
+                        'location': restaurant.location
+                    }
+                })
+            return HttpResponse(json.dumps(orders_response), content_type='application/json')
         except (User.DoesNotExist,):
             return Response({'error': 'There is no user with provided id'},
                             status=status.HTTP_404_NOT_FOUND)
