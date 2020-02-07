@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 import json
 
-from restaurants.models import Restaurant, Food, Order
+from restaurants.models import Restaurant, Food, Order, OrderFood
 from restaurants.serializers import RestaurantSerializer, FoodSerializer
 from users.models import User
 
@@ -47,11 +47,12 @@ class OrderFoodAPIView(APIView):
                 restaurant = Restaurant.objects.prefetch_related('foods').get(pk=id)
                 order = Order.objects.create(user_id=request.user.id, restaurant_id=restaurant.id)
 
-                food_ids = json.loads(request.body)['food_ids']
+                order_foods = json.loads(request.body)['order_foods']
 
-                for food_id in food_ids:
-                    food = Food.objects.get(pk=food_id, restaurant_id=restaurant.id)
-                    order.foods.add(food)
+                for order_food in order_foods:
+                    food = Food.objects.get(pk=order_food['food_id'], restaurant_id=restaurant.id)
+                    of = OrderFood(food_id=food.id, order_id=order.id, count=order_food['count'])
+                    of.save()
 
                 return HttpResponse('Successfully created order with id ' + str(order.id),
                                     status=status.HTTP_201_CREATED)

@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="cadc6129-29eb-4b9f-88e7-2122f6eaa437" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/order_api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/order_api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/order_api/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/order_api/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/migrations/0002_food.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/migrations/0003_order.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/restaurants/migrations/0004_auto_20200204_1758.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurants/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/restaurants/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/restaurants/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/restaurants/views.py" afterDir="false" />
     </list>
@@ -74,7 +78,7 @@
       <option name="presentableId" value="Default" />
       <updated>1580755395028</updated>
       <workItem from="1580755396967" duration="14613000" />
-      <workItem from="1580835122126" duration="4940000" />
+      <workItem from="1580835122126" duration="10310000" />
     </task>
     <servers />
   </component>
@@ -110,13 +114,13 @@
       <screen x="0" y="23" width="1440" height="877" />
     </state>
     <state x="399" y="294" key="com.intellij.ide.util.TipDialog/0.23.1440.877@0.23.1440.877" timestamp="1580835122191" />
-    <state x="386" y="97" width="679" height="729" key="find.popup" timestamp="1580836486021">
+    <state x="386" y="97" width="679" height="729" key="find.popup" timestamp="1581094043117">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="386" y="97" width="679" height="729" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1580836486021" />
-    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup" timestamp="1580835719388">
+    <state x="386" y="97" width="679" height="729" key="find.popup/0.23.1440.877@0.23.1440.877" timestamp="1581094043117" />
+    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup" timestamp="1581015329906">
       <screen x="0" y="23" width="1440" height="877" />
     </state>
-    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1580835719388" />
+    <state x="385" y="213" width="670" height="676" key="search.everywhere.popup/0.23.1440.877@0.23.1440.877" timestamp="1581015329906" />
   </component>
 </project>
