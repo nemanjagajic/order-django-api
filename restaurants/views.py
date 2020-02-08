@@ -82,7 +82,6 @@ class OrdersAPIView(APIView):
             for order in orders:
                 restaurant = Restaurant.objects.get(pk=order.restaurant_id)
                 order_foods = OrderFood.objects.filter(order_id=order.id)
-                print('---------')
                 foods_formatted = []
                 for order_food in order_foods:
                     food = Food.objects.get(pk=order_food.food_id)
