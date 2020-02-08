@@ -77,7 +77,7 @@ class OrdersAPIView(APIView):
 
     def get(self, request):
         try:
-            orders = Order.objects.filter(user_id=request.user.id)
+            orders = Order.objects.filter(user_id=request.user.id).order_by('-created_at')
             orders_response = []
             for order in orders:
                 restaurant = Restaurant.objects.get(pk=order.restaurant_id)
