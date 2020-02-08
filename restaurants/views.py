@@ -86,6 +86,7 @@ class OrdersAPIView(APIView):
                 for order_food in order_foods:
                     food = Food.objects.get(pk=order_food.food_id)
                     foods_formatted.append({
+                        'id': food.id,
                         'name': food.name,
                         'price': food.price,
                         'count': order_food.count
