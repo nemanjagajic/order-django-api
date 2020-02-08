@@ -81,6 +81,16 @@ class OrdersAPIView(APIView):
             orders_response = []
             for order in orders:
                 restaurant = Restaurant.objects.get(pk=order.restaurant_id)
+                order_foods = OrderFood.objects.filter(order_id=order.id)
+                print('---------')
+                foods_formatted = []
+                for order_food in order_foods:
+                    food = Food.objects.get(pk=order_food.food_id)
+                    foods_formatted.append({
+                        'name': food.name,
+                        'price': food.price,
+                        'count': order_food.count
+                    })
                 orders_response.append({
                     'id': order.id,
                     'status': order.status,
@@ -89,7 +99,8 @@ class OrdersAPIView(APIView):
                         'id': restaurant.location,
                         'name': restaurant.name,
                         'location': restaurant.location
-                    }
+                    },
+                    'foods': foods_formatted
                 })
             return HttpResponse(json.dumps(orders_response), content_type='application/json')
         except (User.DoesNotExist,):

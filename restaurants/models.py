@@ -33,3 +33,6 @@ class OrderFood(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     food = models.ForeignKey(Food, on_delete=models.CASCADE)
     count = models.IntegerField(default=1)
+
+    def __str__(self):
+        return str(self.food_id) + ' ' + str(self.order_id) + ' ' + str(self.count) + '\n'
